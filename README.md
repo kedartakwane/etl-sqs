@@ -46,6 +46,7 @@ pytest tests/.
     - run.py
    - tests/
      - test_all.py
+   - .gitignore
    - docker-compose.yml
    - Dockerfile
    - env_local.ini
@@ -54,28 +55,28 @@ pytest tests/.
 
 ## Assumptions made for this project
 
-1. The JSON structure for a message fetched from the SQS queue is consistent.
-2. Messages lacking the necessary field values in their data are excluded from the database insertion process.
-3. If `app_version` is a decimal, then it is split on `.` and only the **integer before the `.` is considered** as the type of this is integer.
-4. Masking the `device_id` and `ip` doesn't need to be reversed. Thus, using SHA512.
+1. The JSON structure of messages retrieved from the SQS queue remains consistent.
+2. Messages lacking essential field values in their data are not included in the database insertion process.
+3. When app_version is a decimal, it is split on . with only the integer part before the . considered as its type, as it is treated as an integer.
+4. Masking of device_id and ip utilizes SHA512 and does not require a reversal process.
 
 ## Improving the current version
 
-1. Basic errors are handled but more checks can be added to handle any kind of exception.
-2. Current one message is processed at a time. Performance can be increased using batch processing.
-3. Add a way to log information and give a way to switch between different types of logs like `debug`, `error` and `info`.
-4. Adding more unit tests, as the code only checks if the masking done on `device_id` and `ip` is correct.
+1. While we currently handle basic errors, there's room to implement additional checks to address a broader range of exceptions.
+2. At the moment, we process one message at a time, but there's an opportunity to boost performance by implementing batch processing.
+3. Consider incorporating a logging mechanism that allows for various log types, such as debug, error, and info, with the flexibility to switch between them.
+4. Enhance the test suite by adding more unit tests; presently, the code focuses solely on validating the accuracy of the device_id and ip masking operations.
 
 
 ## Production changes 
 
-1. We have already used docker so using container orchestration like Kubernetes will help.
-2. Optimize the database using techniques like indexing and sharding.
-3. Using GitHub actions for CI/CD pipeline.
-4. Monitoring tools for diagnosing issues and identifying patterns Prometheus or Datadog.
-5. Use logging tools like Logstash.
-6. Adding multiple nodes with load balancer for horizontal scaling and auto-scale based on the resource requirements.
-7. Use open-source, robust stream processing platform like Apache Kafka.
+1. Leveraging container orchestration solutions like Kubernetes can further enhance our existing Docker setup.
+2. Enhance database performance through optimization techniques like indexing and sharding.
+3. Implement GitHub Actions for an efficient CI/CD pipeline.
+4. Utilize monitoring tools such as Prometheus or Datadog to diagnose issues and detect patterns.
+5. Employ logging tools like Logstash to enhance logging capabilities.
+6. Scale horizontally by adding multiple nodes with a load balancer and implement auto-scaling based on resource requirements.
+7. Utilize a reliable open-source stream processing platform like Apache Kafka.
 
 ## About Me
 I am Kedar Takwane, a graduate student at the University of Illinois at Urbana-Champaign, pursuing a Master's degree in Computer Science. <br>
