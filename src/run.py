@@ -91,8 +91,8 @@ def run():
 		print(f"UserDetails List: {user_details_list}")
 
 		# Insert the UserDetails objects into the PostgreSQL database
-		user_login = UserLogins()
-		user_login.insert(user_details_list)
+		user_login_obj = UserLogins()
+		user_login_obj.insert(user_details_list)
 
 		# To avoid overloading the system, sleep for 10 sec
 		time.sleep(10)

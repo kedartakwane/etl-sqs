@@ -50,24 +50,21 @@ class QueueService:
 					self.remove_message(message["ReceiptHandle"])
 
 		except ClientError as e:
-			# Log any errors that occur while reading messages
 			print(f"Error reading messages from SQS: {e}")
 
 		return message_body
 
-	def remove_message(self, receipt_handle: str):
+	def remove_message(self, handle: str):
 		"""
 		Remove the message from the SQS queue.
 
 		Parameters:
-			receipt_handle (str): The receipt handle of the message to be deleted.
+			handle (str): The receipt handle of the message to be deleted.
 		"""
 		try:
-			# Delete the message from the queue
 			self.sqs.delete_message(
 				QueueUrl=self.queue_url,
-				ReceiptHandle=receipt_handle
+				ReceiptHandle=handle
 			)
 		except ClientError as e:
-			# Log any errors that occur while deleting the message
 			print(f"[ERROR] Error deleting message from SQS: {e}")
