@@ -77,4 +77,9 @@ pytest tests/.
 6. Adding multiple nodes with load balancer for horizontal scaling and auto-scale based on the resource requirements.
 7. Use open-source, robust stream processing platform like Apache Kafka.
 
-Contact: [takwane2@illinois.edu](mailto:takwane2@illinois.edu)
+## About Me
+I am Kedar Takwane, a graduate student at the University of Illinois at Urbana-Champaign, pursuing a Master's degree in Computer Science. <br>
+Currently, I am engaged as a Research Assistant, where my responsibilities encompass full-stack development and the development of recommendation systems. Prior to this, I have accumulated three years of industry experience as a Software Engineer.
+
+### Contact Information
+**Email:** [takwane2@illinois.edu](mailto:takwane2@illinois.edu)
