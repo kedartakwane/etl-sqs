@@ -1,0 +1,29 @@
+services:
+    localstack:
+        restart: always
+        image: fetchdocker/data-takehome-localstack
+        ports:
+            - "4566:4566"
+    
+    postgres:
+        image: fetchdocker/data-takehome-postgres
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: postgres
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+    
+    app:
+        build: .
+        env_file: ./env_local.ini
+        depends_on:
+            - postgres
+            - localstack
+        restart: always
+        environment:
+            AWS_ACCESS_KEY_ID: test
+            AWS_SECRET_ACCESS_KEY: test
